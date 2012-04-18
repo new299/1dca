@@ -1,0 +1,6 @@
+1. strip redundant data
+2. reorder matrix according to line similarity horiz.
+3. ........................................... vert.
+4. if no reordering stop else go to step 2.
+
+

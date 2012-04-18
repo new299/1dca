@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "./runall iterations initialstring directory"
+
+max=256
+cur=0
+comparison=1
+
+while [ $comparison -gt 0 ] ; do
+  echo $cur '  ' $comparison
+  ./run1dca $cur $1 $2 $3& 
+  cur=`echo $cur+1 | bc`
+  ./run1dca $cur $1 $2 $3 
+  comparison=`echo $cur '<=' $max | bc`
+done

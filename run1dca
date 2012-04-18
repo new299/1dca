@@ -1,0 +1,16 @@
+#! /bin/bash
+
+./1dca_initstring $1 $2 $3 > $4/1dca.rule$1.iter$2
+./makesquare $4/1dca.rule$1.iter$2 > $4/1dca.rule$1.iter$2.square.clean
+./addspaces $4/1dca.rule$1.iter$2.square.clean > $4/1dca.rule$1.iter$2.square.clean.spaced
+
+export filename=$4/1dca.rule$1.iter$2.square.clean.spaced
+export repeatscore_xtics=10
+export repeatscore_ytics=10
+
+gnuplot ./plot_1dca.gnuplot
+./repeatscore_printonly $4/1dca.rule$1.iter$2 -1 0 > $4/1dca.rule$1.iter$2.score
+./rotate_matrix $4/1dca.rule$1.iter$2.score > $4/1dca.rule$1.iter$2.score.rotated
+
+export filename=$4/1dca.rule$1.iter$2.score.rotated
+gnuplot ./repeatscore_plot_labels.gnu
